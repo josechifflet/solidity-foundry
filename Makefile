@@ -26,7 +26,7 @@ update:; forge update
 build:; forge build
 
 # Run tests
-test:; forge test
+test:; forge test -vvv --gas-report
 
 # Create a snapshot
 snapshot:; forge snapshot
