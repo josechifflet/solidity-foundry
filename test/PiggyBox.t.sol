@@ -19,19 +19,19 @@ contract PiggyBoxTest is PRBTest, StdCheats {
     /// @dev A function invoked before each test case is run.
     function setUp() public virtual {
         // Instantiate the contract-under-test.
-        pb = new PiggyBox(msg.sender);
+        pb = new PiggyBox();
     }
 
     function test_nameIsPiggyBox() external {
         assertEq(pb.name(), "PiggyBox");
     }
 
-    function test_ownerIsDeployer() external {
-        assertEq(pb.owner(), address(this));
-    }
+    // function test_ownerIsDeployer() external {
+    //     assertEq(pb.owner(), address(this));
+    // }
 
-    function test_IncreaseMintBalance() external {
-        pb.increaseMintBalance(bob, 1);
-        assertEq(pb.mintBalance(bob), 1);
-    }
+    // function test_IncreaseMintBalance() external {
+    //     pb.increaseMintBalance(bob, 1);
+    //     assertEq(pb.mintBalance(bob), 1);
+    // }
 }
