@@ -6,7 +6,7 @@ import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import {ERC721URIStorage} from "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 
-contract PiggyBox is ERC721, ERC721URIStorage {
+contract PiggyBox is ERC721, ERC721URIStorage, Ownable {
     /// @notice Private variables
     uint256 private _tokenId;
 
@@ -17,11 +17,19 @@ contract PiggyBox is ERC721, ERC721URIStorage {
     /// @notice Events
     event MintedPiggyBox(address indexed to, uint256 tokenId);
 
-    constructor()
+    /// @param owner The address of the owner of the contract
+    /// @param baseTokenURI The initial baseTokenURI for the contract
+    /// @param baseContractURI The initial contractURI for the contract
+    constructor(
+        address owner,
+        string memory baseTokenURI,
+        string memory baseContractURI
+    )
+        Ownable(owner)
         ERC721("PiggyBox", "MTK")
     {
-        _baseTokenURI = "https://bafybeifu2y57fve3qa5bivrexdm6vap4rordilhnes7ytsom5w2aehejfa.ipfs.dweb.link/";
-        _contractURI = "https://bafybeifu2y57fve3qa5bivrexdm6vap4rordilhnes7ytsom5w2aehejfa.ipfs.dweb.link/";
+        _baseTokenURI = baseTokenURI;
+        _contractURI = baseContractURI;
     }
 
     /// @notice OpenSea URL for the storefront-level metadata for the contract.
@@ -36,6 +44,16 @@ contract PiggyBox is ERC721, ERC721URIStorage {
         _mint(to, tokenId);
 
         emit MintedPiggyBox(to, tokenId);
+    }
+
+    /// @notice Update the baseTokenURI
+    function setBaseTokenURI(string memory baseTokenURI) public onlyOwner {
+        _baseTokenURI = baseTokenURI;
+    }
+
+    /// @notice Update the contractURI
+    function setContractURI(string memory baseContractURI) public onlyOwner {
+        _contractURI = baseContractURI;
     }
 
     /*/////////////////////////////////////////////////////////////////

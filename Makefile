@@ -11,13 +11,12 @@ clean:; forge clean && rm -rf cache out
 remove:; rm -rf .gitmodules && rm -rf .git/modules/* && rm -rf lib && touch .gitmodules && git add . && git commit -m "modules"
 
 # Install dependencies
-install:; forge install foundry-rs/forge-std --no-commit && \
-          forge install PaulRBerg/prb-test --no-commit && \
-          forge install transmissions11/solmate --no-commit && \
-          forge install openzeppelin/openzeppelin-contracts --no-commit && \
-          forge install openzeppelin/openzeppelin-contracts-upgradeable --no-commit && \
-          forge install smartcontractkit/chainlink-brownie-contracts --no-commit && \
-          forge install smartcontractkit/foundry-chainlink-toolkit --no-commit
+install:; forge install foundry-rs/forge-std && \
+          forge install PaulRBerg/prb-test && \
+          forge install transmissions11/solmate && \
+          forge install OpenZeppelin/openzeppelin-contracts && \
+          forge install OpenZeppelin/openzeppelin-foundry-upgrades && \
+          forge install OpenZeppelin/openzeppelin-contracts-upgradeable
 
 # Update Dependencies
 update:; forge update

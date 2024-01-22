@@ -1,0 +1,15 @@
+{
+  "name": "PiggyBox",
+  "description": "PiggyBox is a collection of 10,000 unique PiggyBoxes. Each PiggyBox is randomly generated and has a unique combination of attributes. There are 10 different attributes, each with 10 different possible values. The rarity of each attribute is determined by the number of possible values for that attribute. For example, there are 10 different possible values for the Background attribute, so each Background value has a rarity of 1/10. There are 10 different possible values for the Eyes attribute, so each Eyes value has a rarity of 1/10. There are 10 different possible values for the Mouth attribute, so each Mouth value has a rarity of 1/10. There are 10 different possible values for the Nose attribute, so each Nose value has a rarity of 1/10. There are 10 different possible values for the Ears attribute, so each Ears value has a rarity of 1/10. There are 10 different possible values for the Headgear attribute, so each Headgear value has a rarity of 1/10. There are 10 different possible values for the Body attribute, so each Body value has a rarity of 1/10. There are 10 different possible values for the Arms attribute, so each Arms value has a rarity of 1/10. There are 10 different possible values for the Legs attribute, so each Legs value has a rarity of 1/10. There are 10 different possible values for the Tail attribute, so each Tail value has a rarity of 1/10.",
+  "image": "https://example.com/path/to/your/image.jpg",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Blue"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Green"
+    }
+  ]
+}

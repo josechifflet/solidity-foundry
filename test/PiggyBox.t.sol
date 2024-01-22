@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity >=0.8.21 <0.9.0;
 
-import { PRBTest } from "prb/PRBTest.sol";
+import { PRBTest } from "prb-test/PRBTest.sol";
 import { console2 } from "forge-std/console2.sol";
 import { StdCheats } from "forge-std/StdCheats.sol";
 
@@ -13,13 +13,19 @@ import { PiggyBox } from "../src/PiggyBox.sol";
 contract PiggyBoxTest is PRBTest, StdCheats {
     PiggyBox internal pb;
 
+    address owner = address(0);
     address bob = address(1);
     address alice = address(2);
 
     /// @dev A function invoked before each test case is run.
     function setUp() public virtual {
+
         // Instantiate the contract-under-test.
-        pb = new PiggyBox();
+        pb = new PiggyBox(
+            owner,
+            "https://piggybox.io/api/token/",
+            "https://piggybox.io/api/contract/"
+        );
     }
 
     function test_nameIsPiggyBox() external {
