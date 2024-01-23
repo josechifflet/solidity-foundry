@@ -4,17 +4,15 @@ A Foundry-based template for developing Solidity smart contracts, with sensible 
 
 ## Features
 
-This template builds upon the frameworks and libraries mentioned above, so for details about their specific features,
-please consult their respective documentation.
+This template builds upon the frameworks and libraries mentioned above, so for details about their specific features, please consult their
+respective documentation.
 
-For example, if you're interested in exploring Foundry in more detail, you should look at the
-[Foundry Book](https://book.getfoundry.sh/). In particular, you may be interested in reading the
-[Writing Tests](https://book.getfoundry.sh/forge/writing-tests.html) tutorial.
+For example, if you're interested in exploring Foundry in more detail, you should look at the [Foundry Book](https://book.getfoundry.sh/).
+In particular, you may be interested in reading the [Writing Tests](https://book.getfoundry.sh/forge/writing-tests.html) tutorial.
 
 ### Sensible Defaults
 
-This template comes with a set of sensible default configurations for you to use. These defaults can be found in the
-following files:
+This template comes with a set of sensible default configurations for you to use. These defaults can be found in the following files:
 
 ```text
 ├── .editorconfig
@@ -70,8 +68,7 @@ Deploy to Anvil:
 $ forge script script/Deploy.s.sol --broadcast --fork-url http://localhost:8545
 ```
 
-For this script to work, you need to have a `MNEMONIC` environment variable set to a valid
-[BIP39 mnemonic](https://iancoleman.io/bip39/).
+For this script to work, you need to have a `MNEMONIC` environment variable set to a valid [BIP39 mnemonic](https://iancoleman.io/bip39/).
 
 For instructions on how to deploy to a testnet or mainnet, check out the
 [Solidity Scripting](https://book.getfoundry.sh/tutorials/solidity-scripting.html) tutorial.
@@ -114,8 +111,8 @@ Generate test coverage and output result to the terminal:
 $ pnpm test:coverage
 ```
 
-Generate test coverage with lcov report (you'll have to open the `./coverage/index.html` file in your browser, to do so
-simply copy paste the path):
+Generate test coverage with lcov report (you'll have to open the `./coverage/index.html` file in your browser, to do so simply copy paste
+the path):
 
 ```sh
 $ pnpm test:coverage:report
@@ -123,11 +120,9 @@ $ pnpm test:coverage:report
 
 ## Notes
 
-1. Foundry uses [git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules) to manage dependencies. For
-   detailed instructions on working with dependencies, please refer to the
-   [guide](https://book.getfoundry.sh/projects/dependencies.html) in the book
-2. You don't have to create a `.env` file, but filling in the environment variables may be useful when debugging and
-   testing against a fork.
+1. Foundry uses [git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules) to manage dependencies. For detailed instructions on
+   working with dependencies, please refer to the [guide](https://book.getfoundry.sh/projects/dependencies.html) in the book
+2. You don't have to create a `.env` file, but filling in the environment variables may be useful when debugging and testing against a fork.
 
 ## Related Efforts
 

@@ -16,7 +16,8 @@ install:; forge install foundry-rs/forge-std && \
           forge install transmissions11/solmate && \
           forge install OpenZeppelin/openzeppelin-contracts && \
           forge install OpenZeppelin/openzeppelin-foundry-upgrades && \
-          forge install OpenZeppelin/openzeppelin-contracts-upgradeable
+          forge install OpenZeppelin/openzeppelin-contracts-upgradeable && \
+          forge install Cyfrin/foundry-devops --no-commit
 
 # Update Dependencies
 update:; forge update
