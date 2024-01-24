@@ -20,6 +20,9 @@ contract PiggyBoxV2 is Initializable, ERC721Upgradeable, ERC721URIStorageUpgrade
     /// @notice Events
     event MintedPiggyBox(address indexed to, uint256 tokenId);
 
+    /// @notice Exceptions
+    error InvalidAddress();
+
     /// @custom:oz-upgrades-unsafe-allow constructor
     constructor() {
         _disableInitializers();
@@ -43,6 +46,8 @@ contract PiggyBoxV2 is Initializable, ERC721Upgradeable, ERC721URIStorageUpgrade
 
     /// @notice Mint a PiggyBox
     function mint(address to) public {
+        if (address(to) == address(0)) revert InvalidAddress();
+
         uint256 tokenId = _nextTokenId++;
 
         _mint(to, tokenId);

@@ -74,4 +74,16 @@ contract PiggyBoxV1Test is Test {
     function testGetContractURI() public {
         assertEq(piggyBoxV1.contractURI(), "contractURI/");
     }
+
+    function testFuzz_mint(address recipient) public {
+        if (recipient == address(0)) {
+            vm.expectRevert();
+            piggyBoxV1.mint(recipient);
+        } else {
+            piggyBoxV1.mint(recipient);
+            assertEq(piggyBoxV1.ownerOf(0), recipient);
+            assertEq(piggyBoxV1.balanceOf(recipient), 1);
+            assertEq(piggyBoxV1.tokenURI(1), "baseURI/1.json");
+        }
+    }
 }
