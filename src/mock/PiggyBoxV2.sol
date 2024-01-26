@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.8.21 <0.9.0;
 
-import { console } from "forge-std/Test.sol";
 import { Strings } from "@openzeppelin/contracts/utils/Strings.sol";
 import { ERC721Upgradeable } from "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol";
 import { ERC721URIStorageUpgradeable } from "@openzeppelin/contracts-upgradeable/token/ERC721/extensions/ERC721URIStorageUpgradeable.sol";
@@ -22,6 +21,7 @@ contract PiggyBoxV2 is Initializable, ERC721Upgradeable, ERC721URIStorageUpgrade
 
     /// @notice Exceptions
     error InvalidAddress();
+    error Unauthorized();
 
     /// @custom:oz-upgrades-unsafe-allow constructor
     constructor() {
@@ -68,20 +68,16 @@ contract PiggyBoxV2 is Initializable, ERC721Upgradeable, ERC721URIStorageUpgrade
     /// @notice Only allow the owner to update the implementation contract
     function _authorizeUpgrade(address newImplementation) internal override onlyOwner { }
 
-    /// @notice [Test only] override the version function
+    /// @notice Return the current version of the contract
     function version() external pure returns (uint256) {
         return 2;
     }
 
-    /// @notice [Test only] Add a post-upgrade initialization function for test upgrade purposes
-    function postUpgradeInitialization() public onlyOwner {
-        console.log("Post-upgrade initialization");
-        _nextTokenId = 1000;
-    }
-
-    /// @notice [Test only] Add a function to test the nextTokenId for test upgrade purposes
-    function getNextTokenId() public view returns (uint256) {
-        return _nextTokenId;
+    /// @notice [Upgrade] Add the burn function
+    function burn(uint256 tokenId) public {
+        address nftOwner = ownerOf(tokenId);
+        if (msg.sender != nftOwner) revert Unauthorized();
+        _burn(tokenId);
     }
 
     /*/////////////////////////////////////////////////////////////////

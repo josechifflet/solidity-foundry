@@ -14,12 +14,19 @@ contract PiggyBoxV1Test is Test {
     ERC1967Proxy proxy;
 
     address initialOwner = address(1);
+    address alice = address(2);
 
     function setUp() public {
+        vm.startPrank(initialOwner);
         piggyBoxV1 = new PiggyBoxV1();
         bytes memory initData = abi.encodeWithSelector(PiggyBoxV1(piggyBoxV1).initialize.selector, initialOwner, "baseURI/", "contractURI/");
         proxy = new ERC1967Proxy(address(piggyBoxV1), initData);
         piggyBoxV1 = PiggyBoxV1(address(proxy));
+        vm.stopPrank();
+
+        // Mint a PiggyBox with Alice as the owner
+        vm.prank(alice);
+        piggyBoxV1.mint(alice);
     }
 
     function testUpgradeToV2() public {
@@ -44,10 +51,8 @@ contract PiggyBoxV1Test is Test {
         assertEq(piggyBoxV2.tokenURI(1), "baseURI/1.json");
         assertEq(piggyBoxV2.version(), 2);
 
-        vm.prank(authorizedUpgrader);
-
-        piggyBoxV2.postUpgradeInitialization();
-
-        assertEq(piggyBoxV2.getNextTokenId(), 1000);
+        vm.prank(alice);
+        piggyBoxV2.burn(0);
+        assertEq(piggyBoxV2.balanceOf(alice), 0);
     }
 }
