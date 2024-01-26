@@ -12,8 +12,6 @@ remove:; rm -rf .gitmodules && rm -rf .git/modules/* && rm -rf lib && touch .git
 
 # Install dependencies
 install:; forge install foundry-rs/forge-std && \
-          forge install PaulRBerg/prb-test && \
-          forge install transmissions11/solmate && \
           forge install OpenZeppelin/openzeppelin-contracts && \
           forge install OpenZeppelin/openzeppelin-foundry-upgrades && \
           forge install OpenZeppelin/openzeppelin-contracts-upgradeable && \
@@ -59,3 +57,16 @@ prettier-write:; prettier --write **/*.{json,md,yml} --ignore-path=.prettierigno
 test-coverage:; forge coverage
 
 test-coverage-report:; forge coverage --report lcov && genhtml lcov.info --branch-coverage --output-dir coverage
+
+# Generate development wallet private key
+dev-wallet-pk:
+	./bash/generate-dev-pk.sh
+
+# Deploy Mumbai
+deploy-mumbai:; forge script DeployPiggyBox \
+    -vvv \
+    --verify \
+    --broadcast \
+    --etherscan-api-key SWWRTJ9XGU7APMI576J4WPDDS7U8YMSA7P  \
+    --private-key 0xd693d40d947ba9b85b5c0502410786256cd88edee68fe02585ce397752de5a86 \
+    --rpc-url https://polygon-mumbai.g.alchemy.com/v2/JqiPQfidlW2G375YrWrZ173N6BsNvMTy

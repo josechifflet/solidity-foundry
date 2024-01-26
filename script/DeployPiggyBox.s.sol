@@ -13,14 +13,15 @@ contract DeployPiggyBox is Script {
     }
 
     function deploy() public returns (address) {
-        string memory seedPhrase = vm.readFile(".secret");
-        uint256 privateKey = vm.deriveKey(seedPhrase, 0);
-
+        uint256 privateKey = vm.envUint("PRIVATE_KEY");
         vm.startBroadcast(privateKey);
         PiggyBoxV1 piggyBoxV1 = new PiggyBoxV1();
         bytes memory initData =
-            abi.encodeWithSelector(PiggyBoxV1(piggyBoxV1).initialize.selector, address(this), "baseURI/", "contractURI/");
+            abi.encodeWithSelector(PiggyBoxV1(piggyBoxV1).initialize.selector, address(msg.sender), "baseURI/", "contractURI/");
         ERC1967Proxy proxy = new ERC1967Proxy(address(piggyBoxV1), initData);
+        piggyBoxV1 = PiggyBoxV1(address(proxy));
+
+        piggyBoxV1.mint(address(msg.sender));
         vm.stopBroadcast();
         return address(proxy);
     }

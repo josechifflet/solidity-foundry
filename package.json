@@ -1,12 +1,16 @@
 {
-  "name": "@josechifflet/solidity-foundry",
+  "name": "@earnm/piggy-box-smart-contracts",
+  "license": "UNLICENSED",
   "description": "",
   "version": "1.0.0",
-  "author": {
-    "name": "josechifflet",
-    "url": "https://github.com/josechifflet"
-  },
   "devDependencies": {
+    "@alchemy/aa-accounts": "^2.2.0",
+    "@alchemy/aa-alchemy": "^2.2.0",
+    "@alchemy/aa-core": "^2.2.0",
+    "alchemy-sdk": "^3.1.1",
+    "ethers": "^6.9.2",
+    "magic-sdk": "^21.5.0",
+    "viem": "^2.5.0",
     "prettier": "^3.0.0"
   },
   "keywords": [

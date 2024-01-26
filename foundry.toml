@@ -33,5 +33,5 @@
   wrap_comments = true
 
 [rpc_endpoints]
-  mumbai = "{RPC_ENDPOINT_MUMBAI}"
   polygon = "{RPC_ENDPOINT_POLYGON}"
+  mumbai = "{RPC_ENDPOINT_MUMBAI}"
